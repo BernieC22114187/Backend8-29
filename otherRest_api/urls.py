@@ -4,4 +4,4 @@ urlpatterns = [
     path('new', views.storeConstMenu),
     path('get/<slug:restName>', views.get_Menu),
     path('update', views.update_menu),
-]
+]      
