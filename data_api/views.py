@@ -11,7 +11,7 @@ from TASBackend.models import dish
 
 
 @api_view(['GET', 'POST'])
-def data(request, member_id, timestamp):
+def func(request, member_id, timestamp):
     if request.method == 'GET':
         return getMemberNutrition(request, member_id, timestamp)
     elif request.method == "POST":
@@ -20,11 +20,14 @@ def data(request, member_id, timestamp):
 
 def getMemberNutrition(request, member_id, timestamp): 
     # gets today's member nutrition data
+    # print("timestamp: ", timestamp)
     member_filter = {}
-    member_filter = {'member_id': member_id, 'timestamp': timestamp} 
+    member_filter = {'Member_id': member_id, 'Timestamp': timestamp} 
     
     try: 
-        curMember = data.objects(_raw_ = member_filter)
+        curMember = data.objects.get(__raw__ = member_filter)
+        # print("curMemberID: ", curMember.id)
+
     except data.DoesNotExist:
         return JsonResponse( 
             {'message': 'Member does not exist'},

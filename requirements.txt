@@ -1,11 +1,16 @@
+APScheduler==3.7.0
 asgiref==3.2.10
 astroid==2.4.2
 autopep8==1.5.3
 base58==0.2.1
 boto3==1.14.34
 botocore==1.17.34
+brotlipy==0.7.0
 certifi==2020.6.20
+# cffi @ file:///C:/ci/cffi_1613247279197/work
 chardet==3.0.4
+colorama==0.4.4
+# cryptography @ file:///C:/ci/cryptography_1616769344312/work
 Django==3.0.8
 django-cors-headers==3.4.0
 django-rest-framework==0.1.0
@@ -21,7 +26,9 @@ mccabe==0.6.1
 mongoengine==0.20.0
 Naked==0.1.31
 pycodestyle==2.6.0
-#pycrypto==2.6.1
+# pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pygame==2.0.1
+pyglet==1.5.14
 PyJWT==1.7.1
 pylint==2.5.3
 pylint-django==2.2.0
@@ -29,15 +36,22 @@ pylint-mongoengine==0.4.0
 pylint-plugin-utils==0.6
 pylist==1.4.0
 pymongo==3.10.1
+# pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
+# PySocks @ file:///C:/ci/pysocks_1605287845585/work
 python-dateutil==2.8.1
 pytz==2020.1
 PyYAML==5.3.1
 requests==2.24.0
 requests2==2.16.0
+s3transfer==0.3.7
+# selenium @ file:///C:/ci/selenium_1614268348533/work
 shellescape==3.8.1
-six==1.15.0
+# six @ file:///C:/ci/six_1605187374963/work
 sqlparse==0.3.1
 toml==0.10.1
 typed-ast==1.4.1
-# urllib3==1.21.2
+tzlocal==2.1
+urllib3==1.21.1
+# win-inet-pton @ file:///C:/ci/win_inet_pton_1605306167264/work
+wincertstore==0.2
 wrapt==1.12.1

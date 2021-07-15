@@ -55,15 +55,15 @@ def storeConstMenu(request):
 def get_Menu(request, restName):   
     '''!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'''
     try:     
-        restName = request.GET.get('restName', None)
-        if restName is not None:
-            menus = constantMenu.objects.get()
+        # restName = request.GET.get('restName', None)
+        # if restName is not None:
+        menus = constantMenu.objects.get()
         
-        else:
-            return JsonResponse(
-                {'message': 'restName does not exist'},
-                status = status.HTTP_404_NOT_FOUND
-            )
+        # else:
+        # return JsonResponse(
+        #     {'message': 'restName does not exist'},
+        #     status = status.HTTP_404_NOT_FOUND
+        # )
     except constantMenu.DoesNotExist:
         return JsonResponse(
             {'message': 'menu is not in database.'},

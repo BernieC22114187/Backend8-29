@@ -111,7 +111,7 @@ def login(request):
     except Member.DoesNotExist:
         return JsonResponse(
             {'message': 'user does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_400_NOT_FOUND
         )
     if user.password == password:
         serializer = MemberSerializer(user)
@@ -136,7 +136,7 @@ def get_member(request, user_id):
     except Member.DoesNotExist:
         return JsonResponse(
             {'message': 'user does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_400_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(
@@ -155,7 +155,7 @@ def update_member(request, user_id):
         return JsonResponse(
             
             {'message': 'user does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_400_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(
@@ -176,7 +176,7 @@ def delete_member(request, user_id):
     except Member.DoesNotExist:
         return JsonResponse(
             {'message': 'user does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_400_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(

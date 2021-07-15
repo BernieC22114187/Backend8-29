@@ -35,7 +35,7 @@ sched = BlockingScheduler()
 def job():
     print("Start Crawling.....")
 
-    crawler.crawler()
+    # crawler.crawler()
 
 
 scheduler = BackgroundScheduler()
