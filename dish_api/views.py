@@ -120,12 +120,12 @@ def input_filtDish(request, index, timestamp):
 def update_dish(request, dish_id):   
     data = JSONParser().parse(request)
     try: 
-        dish = dish.objects.get(id = dish_id)
+        tempDish = dish.objects.get(id = dish_id)
     except dish.DoesNotExist:
         return JsonResponse(
             
             {'message': 'dish does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_404_NOT_FOUND
         )
 
     except ValidationError:
@@ -134,7 +134,7 @@ def update_dish(request, dish_id):
             status = status.HTTP_404_NOT_FOUND
             
         )
-    serializer = DishSerializer(dish, data = data) # overrides the previous data
+    serializer = DishSerializer(tempDish, data = data) # overrides the previous data
 
     if serializer.is_valid():
         
@@ -145,11 +145,11 @@ def update_dish(request, dish_id):
 
 def delete_dish(request, dish_id):
     try: 
-        dish = dish.objects.get(id = dish_id)
+        tempDish = dish.objects.get(id = dish_id)
     except dish.DoesNotExist:
         return JsonResponse(
             {'message': 'dish does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_404_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(

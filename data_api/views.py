@@ -14,7 +14,7 @@ from TASBackend.models import dish
 def func(request, member_id, timestamp):
     if request.method == 'GET':
         return getMemberNutrition(request, member_id, timestamp)
-    elif request.method == "POST":
+    elif request.method == 'POST':
         return storeMemberNutrition(request, member_id, timestamp)
 
 
@@ -24,14 +24,14 @@ def getMemberNutrition(request, member_id, timestamp):
     member_filter = {}
     member_filter = {'Member_id': member_id, 'Timestamp': timestamp} 
     
-    try: 
+    try:
         curMember = data.objects.get(__raw__ = member_filter)
         # print("curMemberID: ", curMember.id)
 
     except data.DoesNotExist:
-        return JsonResponse( 
-            {'message': 'Member does not exist'},
-            status = status.HTTP_404_NOT_FOUND
+         return JsonResponse(
+            {'message': 'Member has no data yet'},
+            status = status.HTTP_200_OK
         )
 
     except ValidationError:
@@ -42,8 +42,8 @@ def getMemberNutrition(request, member_id, timestamp):
     serializer = DataSerializer(curMember)
     return JsonResponse(serializer.data, status = status.HTTP_200_OK, safe = False )
 
-@api_view(["POST"])
 def storeMemberNutrition(request, member_id, timestamp): # store nutrition based on list of dishes
+    
     request_data = JSONParser().parse(request)
     dishList = request_data['dishList']
     
@@ -56,13 +56,13 @@ def storeMemberNutrition(request, member_id, timestamp): # store nutrition based
 
     for dishName in dishList:
         Dish = dish.objects.get(Name = dishName)
-        cal+= Dish.Calories; carb+= Dish.Calories; prot+= Dish.Calories; fat+= Dish.Calories; chol+= Dish.Calories; sod+= Dish.Calories; 
+        cal+= Dish.Calories; carb+= Dish.Total_Carbs; prot+= Dish.Protein; fat+= Dish.Total_Fat; chol+= Dish.Cholesterol; sod+= Dish.Sodium; 
     
     
-    member_filter = {'member_id': member_id, 'timestamp': timestamp} 
+    member_filter = {'Member_id': member_id, 'Timestamp': timestamp} 
     
     try: 
-        curMember = data.objects.gets(__raw__ = member_filter)
+        curMember = data.objects.get(__raw__ = member_filter)
         curMember["Calories"] += cal
         curMember["Total_Fat"] += fat
         curMember["Cholesterol"] += chol

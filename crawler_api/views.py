@@ -73,7 +73,7 @@ def get_Menu(request, date):
     except dailyMenu.DoesNotExist:
         return JsonResponse(
             {'message': 'menu is not in database.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_404_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(
@@ -106,7 +106,7 @@ def update_menu(request, menu_date):
         return JsonResponse(
             
             {'message': 'menu does not exist.'},
-            status = status.status.HTTP_400_NOT_FOUND
+            status = status.HTTP_404_NOT_FOUND
         )
     except ValidationError:
         return JsonResponse(
