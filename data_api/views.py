@@ -22,8 +22,8 @@ def getMemberNutrition(request, member_id, timestamp):
     # gets today's member nutrition data
     # print("timestamp: ", timestamp)
     member_filter = {}
-    member_filter = {'Member_id': member_id, 'Timestamp': timestamp} 
-    
+    member_filter = {'Member_id': member_id, 'Timestamp': str(timestamp)} 
+    print(member_filter)
     try:
         curMember = data.objects.get(__raw__ = member_filter)
         # print("curMemberID: ", curMember.id)
@@ -43,7 +43,7 @@ def getMemberNutrition(request, member_id, timestamp):
     return JsonResponse(serializer.data, status = status.HTTP_200_OK, safe = False )
 
 def storeMemberNutrition(request, member_id, timestamp): # store nutrition based on list of dishes
-    
+    timestamp = str(timestamp)
     request_data = JSONParser().parse(request)
     dishList = request_data['dishList']
     
@@ -70,7 +70,7 @@ def storeMemberNutrition(request, member_id, timestamp): # store nutrition based
         curMember["Total_Carbs"] += carb
         curMember["Protein"] += prot
 
-        serializer = DataSerializer(data = { 
+        serializer = DataSerializer( curMember, data = { 
             'Member_id': member_id,
             'Timestamp': timestamp,
             'Calories': curMember["Calories"],
@@ -81,11 +81,11 @@ def storeMemberNutrition(request, member_id, timestamp): # store nutrition based
             'Protein': curMember["Protein"],
 
 
-        }) 
+        }  ) 
         
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status = status.HTTP_200_OK)
+            return JsonResponse(serializer.data, safe = False, status = status.HTTP_200_OK)
         else:
             return JsonResponse(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 

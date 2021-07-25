@@ -24,7 +24,7 @@ class dish (mongoengine.Document):
 
 class data(mongoengine.Document): # member's daily nutrition data
     Member_id = mongoengine.StringField()
-    Timestamp = mongoengine.IntField()
+    Timestamp = mongoengine.StringField()
     Calories = mongoengine.IntField()
     Total_Fat = mongoengine.FloatField()    
     Cholesterol = mongoengine.IntField() 
