@@ -23,6 +23,8 @@ from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.schedulers.background import BackgroundScheduler
 sched = BlockingScheduler() 
+from TASBackend.views import get_system_status
+
 
 # def test():
 #     print("testing...")
@@ -32,22 +34,24 @@ sched = BlockingScheduler()
 #     print("Start crawlering......")
 #     crawler.crawler()
 
-def job():
-    print("Start Crawling.....")
+# def job():
+#     print("Start Crawling.....")
 
     # crawler.crawler()
 
 
-scheduler = BackgroundScheduler()
-scheduler.add_job(job, 'interval', days = 0, hours = 0, minutes = 0, seconds = 10)
-scheduler.start()
+# scheduler = BackgroundScheduler()
+# scheduler.add_job(job, 'interval', days = 0, hours = 0, minutes = 0, seconds = 10)
+# scheduler.start()
 # sched.start()
 # crawler.crawler()
 urlpatterns = [
+    path('', get_system_status),
     path('member/', include('member_api.urls')),
     path('dish/', include('dish_api.urls')),
     path('nutritioninfo/', include('data_api.urls')),
     path('dailyMenu/', include('crawler_api.urls')),
     path('otherRest/', include('otherRest_api.urls'))
+    
 ]
 
