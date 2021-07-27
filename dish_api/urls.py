@@ -2,7 +2,7 @@ from django.urls import path
 from dish_api import views
 urlpatterns = [
     path('new', views.storeNutrition),
-    path('/<slug:dishID>', views.dish_id),
+    path('<slug:dishID>', views.dish_id),
     path('update', views.update_dish),
     path('delete', views.delete_dish),
     # path('getDish/<slug:dishName>', views.dish_filter),
