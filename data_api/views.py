@@ -51,7 +51,7 @@ def storeMemberNutrition(request, member_id, timestamp): # store nutrition based
     if dishList is None:
         msg = {'message': 'body parameter "Data" should be given' }
         return JsonResponse(msg, status= status.HTTP_400_BAD_REQUEST)
- 
+    
     cal = 0;  carb = 0;  prot = 0;  fat = 0;  chol = 0; sod = 0;  
 
     for dishName in dishList:
