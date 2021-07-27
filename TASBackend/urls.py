@@ -32,7 +32,7 @@ from TASBackend.views import get_system_status
 # @sched.scheduled_job('interval', seconds=60) 
 # def mytask():  
 #     print("Start crawlering......")
-#     crawler.crawler()
+#     crawler.crawler()  
 
 # def job():
 #     print("Start Crawling.....")
