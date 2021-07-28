@@ -1,6 +1,10 @@
 import mongoengine
 from mongoengine.fields import StringField
 
+import jwt
+from config import config
+from datetime import datetime, timedelta
+
 class Member (mongoengine.Document):
     account = mongoengine.StringField()
     password = mongoengine.StringField()
@@ -8,6 +12,19 @@ class Member (mongoengine.Document):
     height = mongoengine.IntField()
     timestamp = mongoengine.IntField()
     
+    @property
+    def token(self):
+        return self._generate_jwt_token()
+    
+    def _generate_jwt_token(self):
+        token = jwt.encode({
+            'exp': datetime.utcnow() + timedelta(days = 1),
+            'iet': datetime.utcnow(),
+            'data':{
+                'id':str(self.id),
+            }
+        }, config['SECRET_KEY'], algorithm = 'HS256')
+        return token.decode("utf-8")
     # data = mongoengine.DictField()
     # add dish model
 

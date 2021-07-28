@@ -49,6 +49,7 @@ def storeNutrition(request):
     
 @api_view(['POST'])
 def register(request):
+    
     data = JSONParser().parse(request)
     account = data.get("account")
     password = data.get("password")
@@ -115,7 +116,7 @@ def login(request):
         )
     if user.password == password:
         serializer = MemberSerializer(user)
-        return JsonResponse(serializer.data, status = status.HTTP_200_OK)
+        return JsonResponse({"user":serializer.data,"token": user.token}, status = status.HTTP_200_OK)
 
     return JsonResponse({'message': 'account or password incorrect'}, # password incorrect
         status = status.HTTP_400_BAD_REQUEST
@@ -123,6 +124,27 @@ def login(request):
 
 @api_view(['PUT', 'GET', 'DELETE'])
 def member_id(request, user_id):
+
+    token_payload = request.META.get('TOKEN_PAYLOAD')
+    if token_payload.get("id"):
+        try: 
+            member = Member.objects.get(id = user_id)
+        except Member.DoesNotExist:
+            return JsonResponse(
+                {'message': 'user does not exist.'},
+                status = status.HTTP_404_NOT_FOUND
+            )
+        if user_id != member.id:
+            return JsonResponse(
+                {'message': 'Permission Denied.'},
+                status = status.HTTP_400_BAD_REQUEST
+            )
+    else:
+        return JsonResponse(
+            {'message': 'Permission Denied.'},
+            status = status.HTTP_400_BAD_REQUEST
+        )
+        
     if request.method == 'GET':
         return get_member(request, user_id)
     elif request.method == 'PUT':

@@ -33,7 +33,7 @@ def getMemberNutrition(request, member_id, timestamp):
             {'message': 'Member has no data yet'},
             status = status.HTTP_200_OK
         )
-
+    
     except ValidationError:
         return JsonResponse(
             {'message': 'Member does not exist'},
