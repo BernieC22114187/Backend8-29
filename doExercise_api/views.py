@@ -13,7 +13,7 @@ from TASBackend.models import data
 from TASBackend.models import Member
 
 @api_view(['GET'])
-
+ 
 
 def getMemberExercise(request, member_id, timestamp): 
     
