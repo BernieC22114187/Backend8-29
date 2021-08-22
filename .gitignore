@@ -1,0 +1,7 @@
+/.DS_Store
+/config.py
+/env
+__pycache__
+otherRest_api/__pycache__
+TASBackend/__pycache__
+member_api/__pycache__
