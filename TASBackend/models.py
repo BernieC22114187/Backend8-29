@@ -42,12 +42,22 @@ class dish (mongoengine.Document):
 class data(mongoengine.Document): # member's daily nutrition data
     Member_id = mongoengine.StringField()
     Timestamp = mongoengine.StringField()
-    Calories = mongoengine.IntField()
+    Calories = mongoengine.FloatField()
     Total_Fat = mongoengine.FloatField()    
     Cholesterol = mongoengine.IntField() 
     Sodium = mongoengine.IntField()
     Total_Carbs = mongoengine.IntField()
     Protein = mongoengine.IntField()
+
+class doExercise(mongoengine.Document):
+    Member_id = mongoengine.StringField()
+    Timestamp = mongoengine.StringField()
+    burnedCalories = mongoengine.FloatField()
+
+class exercise(mongoengine.Document):
+    Name = mongoengine.StringField()
+    Ratio = mongoengine.FloatField()
+
 
 class dailyMenu(mongoengine.Document):
     Date = mongoengine.DateTimeField()

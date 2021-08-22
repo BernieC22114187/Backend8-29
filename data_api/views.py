@@ -42,6 +42,8 @@ def getMemberNutrition(request, member_id, timestamp):
     serializer = DataSerializer(curMember)
     return JsonResponse(serializer.data, status = status.HTTP_200_OK, safe = False )
 
+
+
 def storeMemberNutrition(request, member_id, timestamp): # store nutrition based on list of dishes
     timestamp = str(timestamp)
     request_data = JSONParser().parse(request)
