@@ -5,7 +5,7 @@ autopep8==1.5.3
 base58==0.2.1
 boto3==1.14.34
 botocore==1.17.34
-brotlipy==0.7.0
+# brotlipy==0.7.0
 certifi==2020.6.20
 # cffi @ file:///C:/ci/cffi_1613247279197/work
 chardet==3.0.4
@@ -27,8 +27,8 @@ mongoengine==0.20.0
 Naked==0.1.31
 pycodestyle==2.6.0
 # pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
-pygame==2.0.1
-pyglet==1.5.14
+# pygame==2.0.1
+# pyglet==1.5.14
 PyJWT==1.7.1
 pylint==2.5.3
 pylint-django==2.2.0
