@@ -12,6 +12,6 @@ def get_system_status(request):
                 <p>If you see this message, the API service is connect from your client successfully.</p>
             </div>
         </body>
-    <html>
+    <html> 
     """
     return HttpResponse(response_html)
